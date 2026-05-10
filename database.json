@@ -1,19 +1,31 @@
 {
-  "user": {
-    "name": "Étudiant",
-    "level": 1,
-    "streak": 0
-  },
-  "xp_by_subject": {
-    "Mathématiques": 0,
-    "Sciences": 0,
-    "Histoire": 0,
-    "Français": 0
-  },
-  "homidex": {
-    "Mathématiques": { "name": "Mathimon", "stage": "Oeuf" },
-    "Sciences": { "name": "Sciencimon", "stage": "Oeuf" },
-    "Histoire": { "name": "Historimon", "stage": "Oeuf" },
-    "Français": { "name": "Francimon", "stage": "Oeuf" }
-  }
+    "user": {
+        "name": "Étudiant",
+        "level": 1,
+        "streak": 0
+    },
+    "xp_by_subject": {
+        "Mathématiques": 28,
+        "Sciences": 0,
+        "Histoire": 0,
+        "Français": 0
+    },
+    "homidex": {
+        "Mathématiques": {
+            "name": "Mathimon",
+            "stage": 1
+        },
+        "Sciences": {
+            "name": "Sciencimon",
+            "stage": "Oeuf"
+        },
+        "Histoire": {
+            "name": "Historimon",
+            "stage": "Oeuf"
+        },
+        "Français": {
+            "name": "Francimon",
+            "stage": "Oeuf"
+        }
+    }
 }
