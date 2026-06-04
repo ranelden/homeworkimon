@@ -3,27 +3,24 @@ from utils.db_manager import load_db, add_xp
 from utils.config import SUBJECTS_CONFIG
 from utils.ai_mock import extract_text, build_prompt, mock_evaluate_effort
 
-st.set_page_config(page_title="Habit Hub - Dépôt", page_icon="📝", layout="wide")
+st.set_page_config(page_title="Habit Hub - Submission", page_icon="📝", layout="wide")
 
-# --- MODALE D'ÉVOLUTION (US-3.09) ---
-@st.dialog("🌟 ÉVOLUTION !")
+# --- EVOLUTION MODAL (US-3.09) ---
+@st.dialog("🌟 EVOLUTION!")
 def show_evolution(subject, new_stage):
     st.balloons()
-    st.write(f"### Incroyable !")
-    st.write(f"Ton Homeworkimon de **{subject}** a évolué vers le **Stade {new_stage}** !")
+    st.write(f"### Amazing!")
+    st.write(f"Your Homeworkimon for **{subject}** evolved to **Stage {new_stage}**!")
     
     img_prefix = SUBJECTS_CONFIG.get(subject, "math")
     img_path = f"img/{img_prefix}${new_stage}.png"
     try:
         st.image(img_path, width=200)
     except:
-        st.info("(Image de l'évolution)")
-    
-    if st.button("Génial !"):
-        st.rerun()
+            st.info("(Evolution image)")
 
 st.title("📝 Habit Hub")
-st.write("Transforme tes efforts scolaires en puissance de monstre.")
+st.write("Turn your school work into monster power.")
 
 subjects = list(SUBJECTS_CONFIG.keys())
 
@@ -32,40 +29,40 @@ with st.container(border=True):
     
     with col1:
         # US-2.01, US-2.02: Selectbox avec recherche native
-        selected_subject = st.selectbox("Matière du devoir", ["Choisir..."] + subjects)
+        selected_subject = st.selectbox("Assignment subject", ["Choose..."] + subjects)
         
         # US-2.13: Tag de difficulté perçue
-        difficulty = st.radio("Difficulté perçue", ["Easy", "Medium", "Hard"], horizontal=True)
+        difficulty = st.radio("Perceived difficulty", ["Easy", "Medium", "Hard"], horizontal=True)
         
-        # US-2.03: Champ de texte large
-        instructions = st.text_area("Consignes du professeur", placeholder="Colle ici l'énoncé ou les attentes...", height=150)
+        # US-2.03: Large text field
+        instructions = st.text_area("Teacher instructions", placeholder="Paste the prompt or expectations here...", height=150)
         
-        # US-2.04: Compteur de mots en temps réel
+        # US-2.04: Live word counter
         word_count = len(instructions.split())
-        st.caption(f"Nombre de mots : {word_count}")
+        st.caption(f"Word count: {word_count}")
 
     with col2:
-        # US-2.05, US-2.06, US-2.08, US-3.12: Uploader natif drag & drop, restreint PDF/TXT
-        uploaded_file = st.file_uploader("Ton fichier (PDF ou Texte)", type=["pdf", "txt"])
-        st.info("Limite de taille : 5 Mo. Formats supportés : .pdf, .txt")
+        # US-2.05, US-2.06, US-2.08, US-3.12: Native drag & drop uploader, restricted to PDF/TXT
+        uploaded_file = st.file_uploader("Your file (PDF or TXT)", type=["pdf", "txt"])
+        st.info("Size limit: 5 MB. Supported formats: .pdf, .txt")
 
-    submit_btn = st.button("Analyser mon travail ✨", type="primary", use_container_width=True)
+    submit_btn = st.button("Analyze my work ✨", type="primary", use_container_width=True)
 
-# --- LOGIQUE DE SOUMISSION ---
+# --- SUBMISSION LOGIC ---
 if submit_btn:
-    # US-2.07: Validations strictes
-    if selected_subject == "Choisir...":
-        st.error("N'oublie pas de choisir une matière !")
+    # US-2.07: Strict validations
+    if selected_subject == "Choose...":
+        st.error("Please choose a subject!")
     elif not instructions.strip():
-        st.error("L'IA a besoin des consignes pour t'évaluer.")
+        st.error("The AI needs the instructions to assess your work.")
     elif not uploaded_file:
-        st.error("Il manque ton fichier !")
-    # US-3.11: Limite stricte de 5 Mo
+        st.error("Your file is missing!")
+    # US-3.11: Strict 5 MB limit
     elif uploaded_file.size > 5 * 1024 * 1024:
-        st.error("Le fichier dépasse la limite autorisée de 5Mo.")
+        st.error("The file exceeds the 5 MB limit.")
     else:
-        # US-2.09: Icône de chargement stylisée
-        with st.spinner(f"L'IA analyse ton devoir de {selected_subject}..."):
+        # US-2.09: Styled loading icon
+        with st.spinner(f"The AI is analyzing your {selected_subject} assignment..."):
             try:
                 # Simulation IA
                 text_content = extract_text(uploaded_file)
@@ -75,11 +72,11 @@ if submit_btn:
                 # Mise à jour DB
                 new_total, evolved, stage, final_xp = add_xp(selected_subject, base_xp, uploaded_file.name, dist, difficulty)
                 
-                # US-2.10: Écran de succès
-                st.success(f"🎉 Bravo ! Ton travail a été validé. +{final_xp} XP ({difficulty}).")
+                # US-2.10: Success screen
+                st.success(f"🎉 Great job! Your work was validated. +{final_xp} XP ({difficulty}).")
                 
-                # US-3.13: Raisonnement de l'IA
-                st.info(f"🤖 **Retour de l'IA :** {reasoning}")
+                # US-3.13: AI reasoning
+                st.info(f"🤖 **AI feedback:** {reasoning}")
                 
                 res_col1, res_col2 = st.columns([1, 3])
                 with res_col1:
@@ -92,7 +89,7 @@ if submit_btn:
                 with res_col2:
                     st.metric("Nouveau Total XP", f"{new_total} XP", delta=f"+{final_xp}")
                     dist_str = ", ".join([f"{b} (+{int(final_xp*w)})" for b, w in dist.items()])
-                    st.caption(f"🌳 Compétences entraînées : {dist_str}")
+                    st.caption(f"🌳 Skills trained: {dist_str}")
 
                 # US-3.09: Trigger modale d'évolution
                 if evolved:
@@ -100,11 +97,11 @@ if submit_btn:
                 
                 # US-2.12: Bouton de soumission multiple
                 st.divider()
-                if st.button("🔄 Faire une nouvelle soumission"):
+                if st.button("🔄 Submit another assignment"):
                     st.rerun()
 
             except Exception as e:
-                st.error("Une erreur système est survenue. Merci de réessayer.")
+                st.error("A system error occurred. Please try again.")
 
 # --- ZONE DE SIGNALEMENT (US-3.10) ---
 st.divider()

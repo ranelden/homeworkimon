@@ -12,8 +12,8 @@ data = load_db()
 skills = data.get("skills", {})
 history = data.get("history", [])
 
-st.title("🌳 Skill Tree & Analyses")
-st.write("Visualise ton évolution RPG et analyse tes performances.")
+st.title("🌳 Skill Tree & Analysis")
+st.write("Visualize your RPG progression and analyze your performance.")
 
 col_radar, col_branches = st.columns([2, 1])
 
@@ -21,7 +21,7 @@ col_radar, col_branches = st.columns([2, 1])
 # US-5.01, 5.02, 5.03 : RADAR CHART DYNAMIQUE
 # ==========================================
 with col_radar:
-    st.subheader("Radar de Compétences")
+    st.subheader("Skill Radar")
     
     if sum(skills.values()) > 0:
         # Trouver la compétence dominante (US-5.02)
@@ -65,24 +65,24 @@ with col_radar:
             margin=dict(l=40, r=40, t=20, b=20)
         )
         st.plotly_chart(fig, use_container_width=True)
-        st.caption(f"🌟 Compétence dominante : **{dominant_skill}**")
+        st.caption(f"🌟 Dominant skill: **{dominant_skill}**")
         
     else:
-        st.info("Le radar s'affichera dès que tu auras soumis ton premier devoir dans le Habit Hub !")
+        st.info("The radar will appear once you submit your first assignment in the Habit Hub!")
 
     # ==========================================
     # US-5.05, 5.06 : CONSEIL IA
     # ==========================================
     with st.container(border=True):
-        st.markdown(f"💡 **Conseil de l'IA :** {mock_get_advice()}")
-        if st.button("🔄 Rafraîchir l'analyse"):
+        st.markdown(f"💡 **AI tip:** {mock_get_advice()}")
+        if st.button("🔄 Refresh analysis"):
             st.rerun()
 
 # ==========================================
 # NIVEAUX DÉTAILLÉS (LOGIQUE POLYNOMIALE)
 # ==========================================
 with col_branches:
-    st.subheader("Niveaux Détaillés")
+    st.subheader("Detailed Levels")
     for branch in SKILL_BRANCHES:
         xp = skills.get(branch, 0.0)
         lvl = get_skill_level(xp)
@@ -91,7 +91,7 @@ with col_branches:
         range_xp = next_bound - cur_bound
         progress = (xp - cur_bound) / range_xp if range_xp > 0 else 0
         
-        st.write(f"**{branch}** - Niv. {lvl}")
+        st.write(f"**{branch}** - Lv. {lvl}")
         st.progress(min(max(progress, 0.0), 1.0))
         st.caption(f"{int(xp)} / {int(next_bound)} XP")
 
@@ -100,7 +100,7 @@ st.divider()
 # ==========================================
 # US-5.04 : TIMELINE (LINE CHART 7 DERNIERS JOURS)
 # ==========================================
-st.subheader("📈 Gains d'XP (7 Derniers Jours)")
+st.subheader("📈 XP Gains (Last 7 Days)")
 
 if history:
     # Traitement des données pour récupérer les 7 derniers jours

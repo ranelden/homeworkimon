@@ -36,25 +36,25 @@ st.title("🏠 Dashboard")
 # --- HEADER : PROFIL & STREAK ---
 col_profile, col_stats = st.columns([2, 1])
 with col_profile:
-    nickname = data.get('settings', {}).get('nickname', 'Étudiant')
-    st.write(f"### Bienvenue, {nickname} !")
+    nickname = data.get('settings', {}).get('nickname', 'Student')
+    st.write(f"### Welcome, {nickname}!")
     st.caption(f"_{random.choice(QUOTES)}_")
 
 with col_stats:
     streak = data.get("user", {}).get("streak", 0)
     # US-1.09, US-1.10: Icône de flamme ou grise selon le streak
     flame = "🔥" if streak > 0 else "🌑"
-    st.metric(label=f"{flame} Streak Actuel", value=f"{streak} Jours")
+    st.metric(label=f"{flame} Current Streak", value=f"{streak} Days")
 
 st.divider()
 
 # --- QUÊTES (US-7.01, US-7.03) ---
 col_q1, col_q2 = st.columns(2)
 with col_q1:
-    st.info(f"📜 **Quête du jour :** {random.choice(DAILY_QUESTS)}")
+    st.info(f"📜 **Daily Quest:** {random.choice(DAILY_QUESTS)}")
     
 with col_q2:
-    # Calcul de la quête hebdomadaire (Ex: 5 devoirs cette semaine)
+    # Calcul de la weekly quest progress (Ex: 5 assignments this week)
     week_ago = datetime.now() - timedelta(days=7)
     submissions_this_week = 0
     for h in history:
@@ -66,19 +66,19 @@ with col_q2:
         if h_date >= week_ago:
             submissions_this_week += 1
             
-    st.write("**Quête Hebdomadaire :** Soumettre 5 devoirs")
+    st.write("**Weekly Quest:** Submit 5 assignments")
     st.progress(min(submissions_this_week / 5.0, 1.0))
-    st.caption(f"{submissions_this_week} / 5 devoirs soumis ces 7 derniers jours")
+    st.caption(f"{submissions_this_week} / 5 assignments submitted in the last 7 days")
 
 st.divider()
 
 # --- ÉQUIPE ACTIVE / TOP 3 (US-1.04, 1.05, 1.06) ---
-st.subheader("⚔️ Ton Équipe Active (Top 3)")
+st.subheader("⚔️ Your Active Team (Top 3)")
 xp_data = data.get("xp_by_subject", {})
 top_3 = sorted(xp_data.items(), key=lambda x: x[1], reverse=True)[:3]
 
 if not top_3 or sum(xp for _, xp in top_3) == 0:
-    st.info("Ton équipe est encore vide. Dépose un devoir dans le Habit Hub pour commencer ton aventure !")
+    st.info("Your team is still empty. Drop an assignment in the Habit Hub to start your adventure!")
 else:
     cols = st.columns(3)
     for index, (subject, current_xp) in enumerate(top_3):
@@ -97,12 +97,12 @@ else:
                 try:
                     st.image(img_path, width=120) 
                 except:
-                    st.warning(f"Image introuvable : {img_path}")
+                    st.warning(f"Image not found: {img_path}")
                 
-                # Barres de progression et XP Exacts
+                # Progress bars and exact XP
                 if stage >= 3:
                     st.progress(1.0)
-                    st.success(f"Niveau Max ! ({current_xp} XP)")
+                    st.success(f"Max level! ({current_xp} XP)")
                 else:
                     base_xp = THRESHOLDS[stage]
                     next_xp = THRESHOLDS[stage + 1]
@@ -116,13 +116,13 @@ st.divider()
 col_hist, col_search = st.columns([2, 1])
 
 with col_search:
-    st.subheader("🔍 Recherche")
-    search_query = st.text_input("Trouver un devoir (mot-clé, matière...)")
+    st.subheader("🔍 Search")
+    search_query = st.text_input("Find an assignment (keyword, subject...)")
 
 with col_hist:
-    st.subheader("🕒 Activité Récente")
+    st.subheader("🕒 Recent Activity")
     if not history:
-        st.info("Aucun devoir soumis pour le moment.")
+        st.info("No assignments submitted yet.")
     else:
         # Filtrage si recherche active
         filtered_history = history
@@ -133,11 +133,11 @@ with col_hist:
                 if query in h.get("file_name", "").lower() or query in h.get("subject", "").lower()
             ]
         
-        # Récupération des 5 derniers éléments (US-1.07)
+        # Fetch the last 5 entries (US-1.07)
         last_5 = list(reversed(filtered_history))[:5]
         
         if not last_5:
-            st.warning("Aucun résultat ne correspond à ta recherche.")
+            st.warning("No results match your search.")
         else:
             for item in last_5:
                 with st.container(border=True):

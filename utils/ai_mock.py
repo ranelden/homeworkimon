@@ -7,13 +7,13 @@ def extract_text(uploaded_file):
     US-3.01: Extrait le texte brut d'un fichier PDF ou TXT.
     (Simulation pour le MVP)
     """
-    return "Texte brut extrait du document simulé..."
+    return "Raw text extracted from the simulated document..."
 
 def build_prompt(instructions, text):
     """
     US-3.02: Compile les consignes et le texte en un prompt standardisé.
     """
-    return f"Consignes: {instructions}\n\nTexte de l'élève: {text}\n\nÉvalue l'effort fourni."
+    return f"Instructions: {instructions}\n\nStudent text: {text}\n\nEvaluate the effort provided."
 
 def mock_evaluate_effort(prompt):
     """
@@ -40,11 +40,11 @@ def mock_evaluate_effort(prompt):
     
     # 3. Justification de l'IA (US-3.13)
     reasonings = [
-        "L'effort est bien visible, la structure est claire mais l'originalité peut être creusée.",
-        "Excellent travail de recherche, le raisonnement est très solide.",
-        "Les consignes sont respectées, mais l'expression écrite mérite un peu plus d'attention.",
-        "Très belle créativité dans l'approche de ce devoir !",
-        "Le devoir est un peu court, mais la logique principale est acquise."
+        "Your effort is clearly visible; the structure is solid, but originality could be stronger.",
+        "Excellent research work; the reasoning is very solid.",
+        "The instructions were followed, but written expression could use a bit more polish.",
+        "Very nice creativity in your approach to this assignment!",
+        "The assignment is a bit short, but the core logic is present."
     ]
     reasoning = random.choice(reasonings)
     
@@ -55,10 +55,10 @@ def mock_get_advice():
     US-5.05: Retourne un conseil généré par l'IA pour orienter l'apprentissage sur le Skill Tree.
     """
     advices = [
-        "Essaie de diversifier tes devoirs pour développer ta Créativité.",
-        "Ta Logique est excellente, continue de faire des exercices de maths !",
-        "Un peu plus de Structure ne ferait pas de mal, relis bien tes plans avant de rédiger.",
-        "Ton Raisonnement est solide, attaque-toi à des sujets plus complexes pour repousser tes limites.",
-        "Pense à soigner ton Expression dans tes prochaines rédactions en utilisant un vocabulaire plus riche."
+        "Try diversifying your assignments to develop your Creativity.",
+        "Your Logic is excellent; keep doing math exercises!",
+        "A bit more Structure would help; review your outlines before writing.",
+        "Your Reasoning is solid; tackle more complex topics to push your limits.",
+        "Take care with your Expression in future essays by using richer vocabulary."
     ]
     return random.choice(advices)

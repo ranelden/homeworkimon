@@ -2,10 +2,11 @@
     "user": {
         "name": "Étudiant",
         "level": 1,
-        "streak": 0
+        "streak": 1,
+        "last_date": "2026-06-04"
     },
     "xp_by_subject": {
-        "Mathématiques": 28,
+        "Mathématiques": 303,
         "Sciences": 0,
         "Histoire": 0,
         "Français": 28
@@ -13,7 +14,7 @@
     "homidex": {
         "Mathématiques": {
             "name": "Mathimon",
-            "stage": 1
+            "stage": 2
         },
         "Sciences": {
             "name": "Sciencimon",
@@ -29,14 +30,14 @@
         }
     },
     "skills": {
-        "Logique": 0.0,
-        "Créativité": 0.0,
-        "Structure": 0.0,
-        "Originalité": 0.0,
-        "Raisonnement": 0.0,
-        "Mémoire": 0.0,
+        "Logique": 43.92272438544582,
+        "Créativité": 0.9908392385389285,
+        "Structure": 64.1754577715154,
+        "Originalité": 28.0,
+        "Raisonnement": 67.17817246807037,
+        "Mémoire": 21.134394177576542,
         "Expression": 28.0,
-        "Précision": 0.0
+        "Précision": 49.59841195885294
     },
     "history": [
         {
@@ -44,6 +45,102 @@
             "subject": "Français",
             "file_name": "Exercise 1_ML.pdf",
             "xp": 28
+        },
+        {
+            "date": "2026-06-04 21:03:41",
+            "subject": "Mathématiques",
+            "file_name": "convention de Stage Efrei Cyril Dabernard.pdf",
+            "difficulty": "Easy",
+            "xp": 12
+        },
+        {
+            "date": "2026-06-04 21:03:48",
+            "subject": "Mathématiques",
+            "file_name": "convention de Stage Efrei Cyril Dabernard.pdf",
+            "difficulty": "Easy",
+            "xp": 27
+        },
+        {
+            "date": "2026-06-04 21:03:49",
+            "subject": "Mathématiques",
+            "file_name": "convention de Stage Efrei Cyril Dabernard.pdf",
+            "difficulty": "Easy",
+            "xp": 36
+        },
+        {
+            "date": "2026-06-04 21:03:52",
+            "subject": "Mathématiques",
+            "file_name": "convention de Stage Efrei Cyril Dabernard.pdf",
+            "difficulty": "Easy",
+            "xp": 17
+        },
+        {
+            "date": "2026-06-04 21:14:02",
+            "subject": "Mathématiques",
+            "file_name": "Estonie_état des lieux twin room_Entrée.pdf",
+            "difficulty": "Easy",
+            "xp": 32
+        },
+        {
+            "date": "2026-06-04 21:14:03",
+            "subject": "Mathématiques",
+            "file_name": "Estonie_état des lieux twin room_Entrée.pdf",
+            "difficulty": "Easy",
+            "xp": 28
+        },
+        {
+            "date": "2026-06-04 21:14:03",
+            "subject": "Mathématiques",
+            "file_name": "Estonie_état des lieux twin room_Entrée.pdf",
+            "difficulty": "Easy",
+            "xp": 18
+        },
+        {
+            "date": "2026-06-04 21:14:03",
+            "subject": "Mathématiques",
+            "file_name": "Estonie_état des lieux twin room_Entrée.pdf",
+            "difficulty": "Easy",
+            "xp": 36
+        },
+        {
+            "date": "2026-06-04 21:14:05",
+            "subject": "Mathématiques",
+            "file_name": "Estonie_état des lieux twin room_Entrée.pdf",
+            "difficulty": "Easy",
+            "xp": 20
+        },
+        {
+            "date": "2026-06-04 21:14:06",
+            "subject": "Mathématiques",
+            "file_name": "Estonie_état des lieux twin room_Entrée.pdf",
+            "difficulty": "Easy",
+            "xp": 8
+        },
+        {
+            "date": "2026-06-04 21:14:08",
+            "subject": "Mathématiques",
+            "file_name": "Estonie_état des lieux twin room_Entrée.pdf",
+            "difficulty": "Easy",
+            "xp": 14
+        },
+        {
+            "date": "2026-06-04 21:14:11",
+            "subject": "Mathématiques",
+            "file_name": "Estonie_état des lieux twin room_Entrée.pdf",
+            "difficulty": "Easy",
+            "xp": 17
+        },
+        {
+            "date": "2026-06-04 21:14:13",
+            "subject": "Mathématiques",
+            "file_name": "Estonie_état des lieux twin room_Entrée.pdf",
+            "difficulty": "Easy",
+            "xp": 10
         }
-    ]
+    ],
+    "settings": {
+        "nickname": "Étudiant",
+        "title": "Scholar",
+        "theme_color": "#ff4b4b"
+    }
 }
