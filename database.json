@@ -8,7 +8,7 @@
         "Mathématiques": 28,
         "Sciences": 0,
         "Histoire": 0,
-        "Français": 0
+        "Français": 28
     },
     "homidex": {
         "Mathématiques": {
@@ -25,7 +25,25 @@
         },
         "Français": {
             "name": "Francimon",
-            "stage": "Oeuf"
+            "stage": 1
         }
-    }
+    },
+    "skills": {
+        "Logique": 0.0,
+        "Créativité": 0.0,
+        "Structure": 0.0,
+        "Originalité": 0.0,
+        "Raisonnement": 0.0,
+        "Mémoire": 0.0,
+        "Expression": 28.0,
+        "Précision": 0.0
+    },
+    "history": [
+        {
+            "date": "2026-05-12",
+            "subject": "Français",
+            "file_name": "Exercise 1_ML.pdf",
+            "xp": 28
+        }
+    ]
 }
